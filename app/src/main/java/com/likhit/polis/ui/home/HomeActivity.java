@@ -1,11 +1,11 @@
 package com.likhit.polis.ui.home;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.likhit.polis.R;
+import com.likhit.polis.base.BaseActivity;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
