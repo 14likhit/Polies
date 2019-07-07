@@ -4,6 +4,7 @@ public class AppConstants {
 
     public static final String BUNDLE_KEY_QA = "qa";
     public static final String BUNDLE_KEY_ANSWERS = "answers";
+    public static final String BUNDLE_KEY_POLICIES = "policies";
     public static final String BUNDLE_KEY_POLICY = "policy";
 
     public static final String KEY_ANSWER_1 = "answer1";

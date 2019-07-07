@@ -64,7 +64,7 @@ public class HomeFragment extends BaseFragment {
         binding.policiesLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragementListener.launchRecommendations();
+                fragementListener.launchRecommendations(true);
             }
         });
         binding.learnLayout.setOnClickListener(new View.OnClickListener() {

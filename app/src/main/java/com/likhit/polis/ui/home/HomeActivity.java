@@ -45,13 +45,13 @@ public class HomeActivity extends BaseActivity implements HomeFragementListener 
     }
 
     @Override
-    public void launchRecommendations() {
-        if (answers != null && !answers.isEmpty()) {
+    public void launchRecommendations(boolean isPolicies) {
+        if (answers != null && !answers.isEmpty() && !isPolicies) {
             String[] ans = {answers.get(0), answers.get(1), answers.get(2), answers.get(3), answers.get(4)};
-            replaceFragment(RecommendationsFragment.newInstance(ans), RecommendationsFragment.TAG, true);
+            replaceFragment(RecommendationsFragment.newInstance(ans, isPolicies), RecommendationsFragment.TAG, true);
         } else {
             String[] ans = null;
-            replaceFragment(RecommendationsFragment.newInstance(ans), RecommendationsFragment.TAG, true);
+            replaceFragment(RecommendationsFragment.newInstance(ans, isPolicies), RecommendationsFragment.TAG, true);
         }
     }
 

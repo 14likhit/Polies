@@ -31,6 +31,7 @@ public class RecommendationsFragment extends BaseFragment implements OnItemClick
 
     private FragmentRecommendationsBinding binding;
     private String[] answers;
+    private Boolean isPolicies;
 
     private HomeViewModel homeViewModel;
     private PoliciesAdapter adapter;
@@ -40,10 +41,11 @@ public class RecommendationsFragment extends BaseFragment implements OnItemClick
 
     private HomeFragementListener fragementListener;
 
-    public static RecommendationsFragment newInstance(String[] answers) {
+    public static RecommendationsFragment newInstance(String[] answers, boolean isPolicies) {
         RecommendationsFragment fragment = new RecommendationsFragment();
         Bundle args = new Bundle();
         args.putStringArray(AppConstants.BUNDLE_KEY_ANSWERS, answers);
+        args.putBoolean(AppConstants.BUNDLE_KEY_POLICIES, isPolicies);
         fragment.setArguments(args);
         return fragment;
     }
@@ -53,6 +55,7 @@ public class RecommendationsFragment extends BaseFragment implements OnItemClick
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             this.answers = getArguments().getStringArray(AppConstants.BUNDLE_KEY_ANSWERS);
+            this.isPolicies = getArguments().getBoolean(AppConstants.BUNDLE_KEY_POLICIES);
         }
     }
 
@@ -83,10 +86,10 @@ public class RecommendationsFragment extends BaseFragment implements OnItemClick
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
-        if (answers != null) {
-            getRecommendations();
-        } else {
+        if (isPolicies) {
             getPolicies();
+        } else {
+            getRecommendations();
         }
     }
 

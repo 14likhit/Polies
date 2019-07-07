@@ -10,7 +10,7 @@ public interface HomeFragementListener {
 
     void launchQA();
 
-    void launchRecommendations();
+    void launchRecommendations(boolean isPolicies);
 
     void launchPolicyDetails(Policy policy);
 
