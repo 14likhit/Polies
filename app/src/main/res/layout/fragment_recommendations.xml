@@ -6,35 +6,51 @@
 
     </data>
 
-    <LinearLayout
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:orientation="vertical"
-        tools:context=".ui.recommendations.RecommendationsFragment">
+        android:layout_height="match_parent">
 
-        <ImageView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/default_content_description"
-            android:src="@drawable/recommendation" />
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            tools:context=".ui.recommendations.RecommendationsFragment">
+
+            <ImageView
+                android:id="@+id/recommendations_iv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/default_content_description"
+                android:src="@drawable/recommendation"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/policies_iv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/default_content_description"
+                android:src="@drawable/policies"
+                android:visibility="gone" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recommendations_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                tools:listitem="@layout/layout_policy_item" />
 
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recommendations_rv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
-            tools:listitem="@layout/layout_policy_item" />
+            <ProgressBar
+                android:id="@+id/submitProgress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="16dp"
+                android:visibility="gone" />
 
+        </LinearLayout>
 
-        <ProgressBar
-            android:id="@+id/submitProgress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="16dp"
-            android:visibility="gone" />
+    </android.support.v4.widget.NestedScrollView>
 
-    </LinearLayout>
 </layout>

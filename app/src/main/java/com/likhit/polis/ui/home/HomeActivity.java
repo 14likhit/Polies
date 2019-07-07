@@ -15,12 +15,14 @@ public class HomeActivity extends BaseActivity implements HomeFragementListener 
 
     private static final String TAG = "HomeActivity";
 
-    private List<String> answers;
+    private List<String> answers = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        setupToolbar(getString(R.string.app_name), true);
 
         replaceFragment(HomeFragment.newInstance(), HomeFragment.TAG, false);
     }
@@ -42,8 +44,13 @@ public class HomeActivity extends BaseActivity implements HomeFragementListener 
 
     @Override
     public void launchRecommendations() {
-        String[] ans = {answers.get(0), answers.get(1), answers.get(2), answers.get(3), answers.get(4)};
-        replaceFragment(RecommendationsFragment.newInstance(ans), RecommendationsFragment.TAG, false);
+        if (answers != null && !answers.isEmpty()) {
+            String[] ans = {answers.get(0), answers.get(1), answers.get(2), answers.get(3), answers.get(4)};
+            replaceFragment(RecommendationsFragment.newInstance(ans), RecommendationsFragment.TAG, false);
+        } else {
+            String[] ans = null;
+            replaceFragment(RecommendationsFragment.newInstance(ans), RecommendationsFragment.TAG, false);
+        }
     }
 
     public void updateAnswers(List<String> ansers) {

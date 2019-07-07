@@ -7,5 +7,6 @@
     <string name="phone_number">Phone Number</string>
     <string name="name">Name</string>
     <string name="default_content_description">default_content_description</string>
+    <string name="coming_soon">Coming Soon.....</string>
 
 </resources>

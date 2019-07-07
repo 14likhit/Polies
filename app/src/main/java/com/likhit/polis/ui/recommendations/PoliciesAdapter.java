@@ -8,10 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.likhit.polis.R;
-import com.likhit.polis.data.models.Policies;
+import com.likhit.polis.data.models.Policy;
 import com.likhit.polis.databinding.LayoutPolicyItemBinding;
 import com.likhit.polis.listeners.OnItemClickListener;
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.net.URI;
@@ -20,17 +19,17 @@ import java.util.List;
 
 public class PoliciesAdapter extends RecyclerView.Adapter<PoliciesAdapter.PoliciesViewHolder> {
 
-    private List<Policies> policies;
+    private List<Policy> policies;
 
-    private OnItemClickListener<Policies> onItemClickListener;
+    private OnItemClickListener<Policy> onItemClickListener;
 
     private LayoutInflater inflater;
 
-    public PoliciesAdapter(OnItemClickListener<Policies> onItemClickListener) {
+    public PoliciesAdapter(OnItemClickListener<Policy> onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
 
-    public void setPolicies(List<Policies> policies) {
+    public void setPolicies(List<Policy> policies) {
         this.policies = policies;
     }
 
@@ -45,7 +44,7 @@ public class PoliciesAdapter extends RecyclerView.Adapter<PoliciesAdapter.Polici
 
     @Override
     public void onBindViewHolder(@NonNull PoliciesViewHolder policiesViewHolder, int i) {
-        Policies policy = policies.get(i);
+        Policy policy = policies.get(i);
         policiesViewHolder.binding.policyTitleTv.setText(policy.getName());
         String imageUrlNoParams = getUrlWithoutParameters(policy.getImage());
         Picasso.get().load(policy.getImage())

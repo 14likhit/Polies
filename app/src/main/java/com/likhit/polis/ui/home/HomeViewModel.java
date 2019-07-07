@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 
 import com.google.gson.JsonObject;
 import com.likhit.polis.data.models.Policies;
+import com.likhit.polis.data.models.Policy;
 
 public class HomeViewModel extends AndroidViewModel {
 
@@ -17,8 +18,12 @@ public class HomeViewModel extends AndroidViewModel {
         homeRepository = new HomeRepository();
     }
 
-    public MutableLiveData<Policies> getRecommendation(JsonObject answers) {
+    public MutableLiveData<Policy> getRecommendation(JsonObject answers) {
         return homeRepository.getRecommendation(answers);
+    }
+
+    public MutableLiveData<Policies> getPolicies() {
+        return homeRepository.getPolicies();
     }
 
 }

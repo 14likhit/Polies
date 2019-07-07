@@ -2,59 +2,25 @@ package com.likhit.polis.data.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Policies {
+import java.io.Serializable;
+import java.util.List;
 
-    @SerializedName("id")
-    private Integer id;
-
-    @SerializedName("name")
-    private String name;
-
-    @SerializedName("description")
-    private String detail;
-
-    @SerializedName("image")
-    private String image;
+public class Policies implements Serializable {
+    @SerializedName("policies")
+    private List<Policy> policies;
 
     public Policies() {
     }
 
-    public Policies(Integer id, String name, String detail, String image) {
-        this.id = id;
-        this.name = name;
-        this.detail = detail;
-        this.image = image;
+    public Policies(List<Policy> policies) {
+        this.policies = policies;
     }
 
-    public Integer getId() {
-        return id;
+    public List<Policy> getPolicies() {
+        return policies;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDetail() {
-        return detail;
-    }
-
-    public void setDetail(String detail) {
-        this.detail = detail;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
+    public void setPolicies(List<Policy> policies) {
+        this.policies = policies;
     }
 }

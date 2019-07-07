@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.google.gson.JsonObject;
 import com.likhit.polis.base.BaseFragment;
 import com.likhit.polis.data.models.Policies;
+import com.likhit.polis.data.models.Policy;
 import com.likhit.polis.databinding.FragmentRecommendationsBinding;
 import com.likhit.polis.listeners.OnItemClickListener;
 import com.likhit.polis.ui.home.HomeViewModel;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class RecommendationsFragment extends BaseFragment implements OnItemClickListener<Policies> {
+public class RecommendationsFragment extends BaseFragment implements OnItemClickListener<Policy> {
 
     public static final String TAG = "RecommendationsFragment";
 
@@ -32,7 +33,8 @@ public class RecommendationsFragment extends BaseFragment implements OnItemClick
     private HomeViewModel homeViewModel;
     private PoliciesAdapter adapter;
 
-    private List<Policies> policies;
+    private List<Policy> policies;
+    private Policies policiesList;
 
     public static RecommendationsFragment newInstance(String[] answers) {
         RecommendationsFragment fragment = new RecommendationsFragment();
@@ -61,7 +63,11 @@ public class RecommendationsFragment extends BaseFragment implements OnItemClick
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
-        getRecommendations();
+        if (answers != null) {
+            getRecommendations();
+        } else {
+            getPolicies();
+        }
     }
 
     @Override
@@ -72,6 +78,9 @@ public class RecommendationsFragment extends BaseFragment implements OnItemClick
         }
         if (policies == null) {
             policies = new ArrayList<>();
+        }
+        if (policiesList == null) {
+            policiesList = new Policies();
         }
         binding.recommendationsRv.setLayoutManager(new LinearLayoutManager(getBaseActivity(), LinearLayoutManager.VERTICAL, false));
         binding.recommendationsRv.setAdapter(adapter);
@@ -85,26 +94,56 @@ public class RecommendationsFragment extends BaseFragment implements OnItemClick
         answerBody.addProperty(AppConstants.KEY_ANSWER_3, Integer.valueOf(answers[2]));
         answerBody.addProperty(AppConstants.KEY_ANSWER_4, Integer.valueOf(answers[3]));
         answerBody.addProperty(AppConstants.KEY_ANSWER_5, Integer.valueOf(answers[4]));
-        homeViewModel.getRecommendation(answerBody).observe(this, new Observer<Policies>() {
+        getRecommendation(answerBody);
+    }
+
+    private void updateView() {
+        binding.recommendationsIv.setVisibility(View.VISIBLE);
+        binding.policiesIv.setVisibility(View.GONE);
+        if (policies != null && policies.get(0) != null) {
+            adapter.setPolicies(policies);
+            adapter.notifyDataSetChanged();
+        } else {
+            showMessage("Unable to connect Please try again.");
+        }
+    }
+
+    private void updatePolicies() {
+        binding.recommendationsIv.setVisibility(View.GONE);
+        binding.policiesIv.setVisibility(View.VISIBLE);
+        if (policiesList != null) {
+            adapter.setPolicies(policiesList.getPolicies());
+            adapter.notifyDataSetChanged();
+        } else {
+            showMessage("Unable to connect Please try again.");
+        }
+    }
+
+
+    private void getRecommendation(JsonObject answerBody) {
+        homeViewModel.getRecommendation(answerBody).observe(this, new Observer<Policy>() {
             @Override
-            public void onChanged(@Nullable Policies polices) {
+            public void onChanged(@Nullable Policy polices) {
                 policies.add(polices);
                 updateView();
             }
         });
     }
 
-    private void updateView() {
-        if (policies != null && policies.get(0) != null) {
-            adapter.setPolicies(policies);
-            adapter.notifyDataSetChanged();
-        } else {
-            binding.submitProgress.setVisibility(View.VISIBLE);
-        }
+
+    private void getPolicies() {
+        homeViewModel.getPolicies().observe(this, new Observer<Policies>() {
+            @Override
+            public void onChanged(@Nullable Policies policies) {
+                policiesList = policies;
+                updatePolicies();
+            }
+        });
     }
 
+
     @Override
-    public void onItemClick(Policies item, int position, View view) {
+    public void onItemClick(Policy item, int position, View view) {
 
     }
 }
