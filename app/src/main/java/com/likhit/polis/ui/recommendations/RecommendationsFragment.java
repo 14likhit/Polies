@@ -2,6 +2,7 @@ package com.likhit.polis.ui.recommendations;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,6 +17,7 @@ import com.likhit.polis.data.models.Policies;
 import com.likhit.polis.data.models.Policy;
 import com.likhit.polis.databinding.FragmentRecommendationsBinding;
 import com.likhit.polis.listeners.OnItemClickListener;
+import com.likhit.polis.ui.home.HomeFragementListener;
 import com.likhit.polis.ui.home.HomeViewModel;
 import com.likhit.polis.utils.AppConstants;
 
@@ -36,6 +38,8 @@ public class RecommendationsFragment extends BaseFragment implements OnItemClick
     private List<Policy> policies;
     private Policies policiesList;
 
+    private HomeFragementListener fragementListener;
+
     public static RecommendationsFragment newInstance(String[] answers) {
         RecommendationsFragment fragment = new RecommendationsFragment();
         Bundle args = new Bundle();
@@ -50,6 +54,22 @@ public class RecommendationsFragment extends BaseFragment implements OnItemClick
         if (getArguments() != null) {
             this.answers = getArguments().getStringArray(AppConstants.BUNDLE_KEY_ANSWERS);
         }
+    }
+
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        if (context instanceof HomeFragementListener) {
+            fragementListener = (HomeFragementListener) context;
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        fragementListener = null;
+        super.onDetach();
     }
 
     @Nullable
@@ -144,6 +164,6 @@ public class RecommendationsFragment extends BaseFragment implements OnItemClick
 
     @Override
     public void onItemClick(Policy item, int position, View view) {
-
+        fragementListener.launchPolicyDetails(item);
     }
 }

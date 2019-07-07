@@ -7,6 +7,9 @@ import android.net.NetworkInfo;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 public class Utils {
 
     public static float pxToDp(final Context context, final float px) {
@@ -38,5 +41,19 @@ public class Utils {
         }
         imm.hideSoftInputFromWindow(focusView.getWindowToken(), 0);
     }
+
+    public static String getUrlWithoutParameters(String url) {
+        try {
+            URI uri = new URI(url);
+            return new URI(uri.getScheme(),
+                    uri.getAuthority(),
+                    uri.getPath(),
+                    null, // Ignore the query part of the input url
+                    uri.getFragment()).toString();
+        } catch (URISyntaxException e) {
+            return url;
+        }
+    }
+
 
 }

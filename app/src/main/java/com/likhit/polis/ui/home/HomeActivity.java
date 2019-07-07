@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import com.likhit.polis.R;
 import com.likhit.polis.base.BaseActivity;
+import com.likhit.polis.data.models.Policy;
+import com.likhit.polis.ui.detailPolicy.DetailPolicyFragment;
 import com.likhit.polis.ui.q_a.QandAFragment;
 import com.likhit.polis.ui.recommendations.RecommendationsFragment;
 import com.likhit.polis.ui.userdetails.UserDetailsFragment;
@@ -29,28 +31,33 @@ public class HomeActivity extends BaseActivity implements HomeFragementListener 
 
     @Override
     public void launchHome() {
-        replaceFragment(HomeFragment.newInstance(), HomeFragment.TAG, false);
+        replaceFragment(HomeFragment.newInstance(), HomeFragment.TAG, true);
     }
 
     @Override
     public void launchUserDetails() {
-        replaceFragment(UserDetailsFragment.newInstance(), UserDetailsFragment.TAG, false);
+        replaceFragment(UserDetailsFragment.newInstance(), UserDetailsFragment.TAG, true);
     }
 
     @Override
     public void launchQA() {
-        replaceFragment(QandAFragment.newInstance(), QandAFragment.TAG, false);
+        replaceFragment(QandAFragment.newInstance(), QandAFragment.TAG, true);
     }
 
     @Override
     public void launchRecommendations() {
         if (answers != null && !answers.isEmpty()) {
             String[] ans = {answers.get(0), answers.get(1), answers.get(2), answers.get(3), answers.get(4)};
-            replaceFragment(RecommendationsFragment.newInstance(ans), RecommendationsFragment.TAG, false);
+            replaceFragment(RecommendationsFragment.newInstance(ans), RecommendationsFragment.TAG, true);
         } else {
             String[] ans = null;
-            replaceFragment(RecommendationsFragment.newInstance(ans), RecommendationsFragment.TAG, false);
+            replaceFragment(RecommendationsFragment.newInstance(ans), RecommendationsFragment.TAG, true);
         }
+    }
+
+    @Override
+    public void launchPolicyDetails(Policy policy) {
+        replaceFragment(DetailPolicyFragment.newInstance(policy), DetailPolicyFragment.TAG, true);
     }
 
     public void updateAnswers(List<String> ansers) {

@@ -97,6 +97,7 @@ public class QandAFragment extends BaseFragment implements OnItemClickListener<S
         homeActivity.updateAnswers(answers);
         if (questionFinished == qaList.size()) {
             fragementListener.launchRecommendations();
+            questionFinished = 0;
         } else {
             updateView();
         }

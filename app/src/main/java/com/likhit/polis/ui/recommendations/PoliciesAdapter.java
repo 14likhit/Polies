@@ -11,10 +11,9 @@ import com.likhit.polis.R;
 import com.likhit.polis.data.models.Policy;
 import com.likhit.polis.databinding.LayoutPolicyItemBinding;
 import com.likhit.polis.listeners.OnItemClickListener;
+import com.likhit.polis.utils.Utils;
 import com.squareup.picasso.Picasso;
 
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.List;
 
 public class PoliciesAdapter extends RecyclerView.Adapter<PoliciesAdapter.PoliciesViewHolder> {
@@ -43,29 +42,24 @@ public class PoliciesAdapter extends RecyclerView.Adapter<PoliciesAdapter.Polici
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PoliciesViewHolder policiesViewHolder, int i) {
-        Policy policy = policies.get(i);
+    public void onBindViewHolder(@NonNull final PoliciesViewHolder policiesViewHolder, int i) {
+        final Policy policy = policies.get(i);
         policiesViewHolder.binding.policyTitleTv.setText(policy.getName());
-        String imageUrlNoParams = getUrlWithoutParameters(policy.getImage());
+        String imageUrlNoParams = Utils.getUrlWithoutParameters(policy.getImage());
         Picasso.get().load(policy.getImage())
                 .stableKey(imageUrlNoParams)
                 .placeholder(R.drawable.ic_launcher_background)
                 .fit()
                 .into(policiesViewHolder.binding.policyIv);
+
+        policiesViewHolder.binding.policyLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClickListener.onItemClick(policy, policiesViewHolder.getAdapterPosition(), v);
+            }
+        });
     }
 
-    private String getUrlWithoutParameters(String url) {
-        try {
-            URI uri = new URI(url);
-            return new URI(uri.getScheme(),
-                    uri.getAuthority(),
-                    uri.getPath(),
-                    null, // Ignore the query part of the input url
-                    uri.getFragment()).toString();
-        } catch (URISyntaxException e) {
-            return url;
-        }
-    }
 
     @Override
     public int getItemCount() {
