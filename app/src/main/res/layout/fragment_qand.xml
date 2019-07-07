@@ -13,6 +13,7 @@
         tools:context=".ui.q_a.QandAFragment">
 
         <TextView
+            android:id="@+id/questions_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
@@ -21,9 +22,10 @@
             android:textSize="24sp" />
 
         <android.support.v7.widget.RecyclerView
+            android:id="@+id/answers_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
+            android:visibility="visible"
             tools:listitem="@layout/layout_q_a" />
 
         <ProgressBar
@@ -32,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="16dp"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
     </LinearLayout>
 </layout>
