@@ -7,7 +7,8 @@ public class ApiClient {
 
     private static Retrofit retrofit;
 
-    private static final String base_url = "http://192.168.0.105:8000";
+    private static final String base_url = "https://polies.herokuapp.com";
+//    private static final String base_url = "http://192.168.0.105:8000";
 
     public static Retrofit getRetrofitInstance() {
         if (retrofit == null) {
