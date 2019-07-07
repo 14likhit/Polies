@@ -17,13 +17,14 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:gravity="center"
-            android:text="QUESTIPNDBHDJJJ?"
+            android:text="Recommendations"
             android:textSize="24sp" />
 
         <android.support.v7.widget.RecyclerView
+            android:id="@+id/recommendations_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
+            android:visibility="visible"
             tools:listitem="@layout/layout_policy_item" />
 
 
@@ -33,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="16dp"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
     </LinearLayout>
 </layout>

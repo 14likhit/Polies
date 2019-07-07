@@ -93,7 +93,7 @@ public class QandAFragment extends BaseFragment implements OnItemClickListener<S
     @Override
     public void onItemClick(String item, int position, View view) {
         questionFinished++;
-        answers.add(Integer.toString(position));
+        answers.add(Integer.toString(position + 1));
         homeActivity.updateAnswers(answers);
         if (questionFinished == qaList.size()) {
             fragementListener.launchRecommendations();

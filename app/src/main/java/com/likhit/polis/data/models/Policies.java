@@ -10,7 +10,7 @@ public class Policies {
     @SerializedName("name")
     private String name;
 
-    @SerializedName("detail")
+    @SerializedName("description")
     private String detail;
 
     @SerializedName("image")
