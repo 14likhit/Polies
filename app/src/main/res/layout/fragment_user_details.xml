@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@color/white"
         tools:context=".ui.userdetails.UserDetailsFragment">
 
         <android.support.v4.widget.NestedScrollView
@@ -23,15 +24,25 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
+                <ImageView
+                    android:id="@+id/kyc_iv"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/kyc"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
 
                 <LinearLayout
                     android:id="@+id/user_details_name_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
                     android:layout_marginBottom="8dp"
                     android:orientation="horizontal"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintStart_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/kyc_iv">
 
                     <android.support.design.widget.TextInputLayout
                         android:id="@+id/user_details_name_til"

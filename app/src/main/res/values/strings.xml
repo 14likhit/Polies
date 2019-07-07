@@ -6,5 +6,6 @@
     <string name="email">Name</string>
     <string name="phone_number">Phone Number</string>
     <string name="name">Name</string>
+    <string name="default_content_description">default_content_description</string>
 
 </resources>

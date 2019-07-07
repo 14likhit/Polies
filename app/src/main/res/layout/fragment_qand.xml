@@ -9,8 +9,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:orientation="vertical"
         tools:context=".ui.q_a.QandAFragment">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_margin="16dp"
+            android:src="@drawable/qa" />
 
         <TextView
             android:id="@+id/questions_tv"
@@ -18,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:gravity="center"
-            android:text="QUESTIPNDBHDJJJ?"
+            android:text="Sample Question?"
             android:textSize="24sp" />
 
         <android.support.v7.widget.RecyclerView
