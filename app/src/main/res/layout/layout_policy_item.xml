@@ -23,11 +23,13 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/policy_iv"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:src="@mipmap/ic_launcher" />
 
                 <TextView
+                    android:id="@+id/policy_title_tv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="16dp"
