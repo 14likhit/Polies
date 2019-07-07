@@ -10,8 +10,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:background="@color/white"
+        android:orientation="vertical"
         tools:context=".ui.userdetails.UserDetailsFragment">
 
         <android.support.v4.widget.NestedScrollView
@@ -28,6 +28,7 @@
                     android:id="@+id/kyc_iv"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
+                    android:contentDescription="@string/default_content_description"
                     android:src="@drawable/kyc"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -40,6 +41,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:layout_marginBottom="8dp"
+                    android:baselineAligned="false"
                     android:orientation="horizontal"
                     app:layout_constraintStart_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/kyc_iv">
@@ -56,7 +58,7 @@
                             android:layout_height="wrap_content"
                             android:hint="@string/name"
                             android:imeOptions="actionNext"
-                            android:inputType="textCapWords" />
+                            android:inputType="textCapWords|textPersonName" />
                     </android.support.design.widget.TextInputLayout>
 
 
@@ -81,16 +83,18 @@
                             android:id="@+id/user_details_phone_et"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:digits="0123456789"
                             android:hint="@string/phone_number"
                             android:imeOptions="actionNext"
-                            android:inputType="textCapWords" />
+                            android:inputType="phone"
+                            android:maxLength="10" />
                     </android.support.design.widget.TextInputLayout>
 
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/user_details_email_layout"
+                    android:id="@+id/user_details_gender_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
@@ -99,18 +103,19 @@
                     app:layout_constraintTop_toBottomOf="@id/user_details_phone_layout">
 
                     <android.support.design.widget.TextInputLayout
-                        android:id="@+id/user_details_email_til"
+                        android:id="@+id/user_details_gender_til"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
 
                         <android.support.design.widget.TextInputEditText
-                            android:id="@+id/user_details_email_et"
+                            android:id="@+id/user_details_gender_et"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/email"
+                            android:hint="@string/gender"
                             android:imeOptions="actionNext"
-                            android:inputType="textCapWords" />
+                            android:inputType="textCapWords"
+                            android:maxLength="6" />
                     </android.support.design.widget.TextInputLayout>
 
 
@@ -123,7 +128,7 @@
                     android:layout_marginBottom="8dp"
                     android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/user_details_email_layout">
+                    app:layout_constraintTop_toBottomOf="@id/user_details_gender_layout">
 
                     <android.support.design.widget.TextInputLayout
                         android:id="@+id/user_details_age_til"
@@ -135,9 +140,11 @@
                             android:id="@+id/user_details_age_et"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:digits="0123456789"
                             android:hint="@string/age"
                             android:imeOptions="actionNext"
-                            android:inputType="textCapWords" />
+                            android:inputType="phone"
+                            android:maxLength="2" />
                     </android.support.design.widget.TextInputLayout>
 
 
@@ -161,10 +168,13 @@
                         <android.support.design.widget.TextInputEditText
                             android:id="@+id/user_details_address_et"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="100dp"
+                            android:fitsSystemWindows="true"
+                            android:gravity="top"
                             android:hint="@string/address"
-                            android:imeOptions="actionNext"
-                            android:inputType="textCapWords" />
+                            android:imeOptions="actionDone"
+                            android:inputType="textMultiLine|textCapSentences"
+                            android:padding="5dp" />
                     </android.support.design.widget.TextInputLayout>
 
 
