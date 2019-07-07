@@ -4,12 +4,46 @@ import android.os.Bundle;
 
 import com.likhit.polis.R;
 import com.likhit.polis.base.BaseActivity;
+import com.likhit.polis.data.models.QA;
+import com.likhit.polis.ui.q_a.QandAFragment;
+import com.likhit.polis.ui.recommendations.RecommendationsFragment;
+import com.likhit.polis.ui.userdetails.UserDetailsFragment;
+import com.likhit.polis.utils.SampleQA;
 
-public class HomeActivity extends BaseActivity {
+import java.util.List;
+
+public class HomeActivity extends BaseActivity implements HomeFragementListener {
+
+    private static final String TAG = "HomeActivity";
+
+    private List<String> answers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        replaceFragment(HomeFragment.newInstance(), HomeFragment.TAG, false);
+    }
+
+    @Override
+    public void launchHome() {
+        replaceFragment(HomeFragment.newInstance(), HomeFragment.TAG, false);
+    }
+
+    @Override
+    public void launchUserDetails() {
+        replaceFragment(UserDetailsFragment.newInstance(), UserDetailsFragment.TAG, false);
+    }
+
+    @Override
+    public void launchQA() {
+        replaceFragment(QandAFragment.newInstance(SampleQA.getQas().get(0)), QandAFragment.TAG, false);
+    }
+
+    @Override
+    public void launchRecommendations() {
+        String[] ans = {answers.get(0), answers.get(1), answers.get(2), answers.get(3), answers.get(4)};
+        replaceFragment(RecommendationsFragment.newInstance(ans), RecommendationsFragment.TAG, false);
     }
 }
